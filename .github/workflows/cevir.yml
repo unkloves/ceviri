@@ -1,0 +1,16 @@
+name: Çevir
+on: [push, workflow_dispatch]
+jobs:
+  cevir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install deep-translator
+      - run: python cevir.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: turkce-metin
+          path: maca-kizi-TR.txt
